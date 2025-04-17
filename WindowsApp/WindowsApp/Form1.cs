@@ -16,5 +16,10 @@ namespace WindowsApp
         {
             InitializeComponent();
         }
+
+        private void btnMostrar_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Bienvenidos");
+        }
     }
 }
