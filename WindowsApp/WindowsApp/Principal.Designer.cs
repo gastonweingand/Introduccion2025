@@ -34,7 +34,7 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(56, 53);
+            this.txtNombre.Location = new System.Drawing.Point(638, 356);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(183, 26);
             this.txtNombre.TabIndex = 0;
@@ -42,7 +42,7 @@
             // btnMostrar
             // 
             this.btnMostrar.BackColor = System.Drawing.Color.IndianRed;
-            this.btnMostrar.Location = new System.Drawing.Point(28, 114);
+            this.btnMostrar.Location = new System.Drawing.Point(604, 401);
             this.btnMostrar.Name = "btnMostrar";
             this.btnMostrar.Size = new System.Drawing.Size(239, 66);
             this.btnMostrar.TabIndex = 1;
