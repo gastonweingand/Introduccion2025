@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POO", "POO\POO.csproj", "{8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValorReferencia", "ValorReferencia\ValorReferencia.csproj", "{99FEA930-8A29-42F1-AE76-E0074E00B449}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinApp", "WinApp\WinApp.csproj", "{5174EC4A-4680-4075-8E3D-25466CDC445A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{99FEA930-8A29-42F1-AE76-E0074E00B449}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99FEA930-8A29-42F1-AE76-E0074E00B449}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99FEA930-8A29-42F1-AE76-E0074E00B449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5174EC4A-4680-4075-8E3D-25466CDC445A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5174EC4A-4680-4075-8E3D-25466CDC445A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5174EC4A-4680-4075-8E3D-25466CDC445A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5174EC4A-4680-4075-8E3D-25466CDC445A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
