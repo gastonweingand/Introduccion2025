@@ -46,6 +46,10 @@ namespace POO
             {
                 Console.WriteLine(ex.Message);
             }
+          
+
+
+
 
             //Ejercicio de figuras geométricas
 

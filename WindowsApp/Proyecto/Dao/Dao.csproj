@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{82555813-2952-4348-A165-FAC1924A4799}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>POO</RootNamespace>
-    <AssemblyName>POO</AssemblyName>
+    <ProjectGuid>{B4C2DDD4-43D3-4AA4-B7B5-D8580CC08B53}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dao</RootNamespace>
+    <AssemblyName>Dao</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -35,7 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,23 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\Agregacion\Cliente.cs" />
-    <Compile Include="Clases\Agregacion\TarjetaCredito.cs" />
-    <Compile Include="Clases\Composicion\Direccion.cs" />
-    <Compile Include="Clases\Figuras\Circulo.cs" />
-    <Compile Include="Clases\Figuras\Cuadrado.cs" />
-    <Compile Include="Clases\Figuras\FiguraGeometrica.cs" />
-    <Compile Include="Clases\Figuras\Rectangulo.cs" />
-    <Compile Include="Clases\Herencia\Auto.cs" />
-    <Compile Include="Clases\Herencia\Avion.cs" />
-    <Compile Include="Clases\Herencia\Motocicleta.cs" />
-    <Compile Include="Clases\Herencia\Vehiculo.cs" />
-    <Compile Include="Clases\Taxi.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Domain\Producto.cs" />
+    <Compile Include="Implementaciones\ProductoMemoryDao.cs" />
+    <Compile Include="Interfaces\IProductoDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
