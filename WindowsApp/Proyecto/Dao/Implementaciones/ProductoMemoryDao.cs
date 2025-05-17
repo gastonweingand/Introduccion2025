@@ -22,7 +22,7 @@ namespace Dao.Implementaciones
             //Generamos algunos objetos por defecto
             productos.Add(new Producto(1, "Fideos terrabusi moñito 500g", 3000, "0001", DateTime.Now.AddYears(10)));
             productos.Add(new Producto(2, "Fideos marolio largo 500g", 2500, "0002", DateTime.Now.AddYears(11)));
-            productos.Add(new Producto(3, "Fideos arcdor tirabuzón 500g", 1800, "0003", DateTime.Now.AddYears(15)));
+            productos.Add(new Producto(3, "Fideos arcor tirabuzón 500g", 1800, "0003", DateTime.Now.AddYears(15)));
         }
 
         public void Agregar(Producto producto)
@@ -34,17 +34,44 @@ namespace Dao.Implementaciones
 
         public void Eliminar(int id)
         {
-            throw new NotImplementedException();
+            //A la antigua, buscando el elemento y luego eliminándolo.
+            Producto producto = ObtenerPorId(id);
+            productos.Remove(producto);
+
+            //Linq, a través de una expresión lambda
+            //productos.RemoveAll(o => o.Id == id);
         }
 
         public void Modificar(Producto producto)
         {
-            throw new NotImplementedException();
+            //Para modificar, primero debemos buscar el producto a ser modificado
+            Producto produ = ObtenerPorId(producto.Id);
+
+            produ.CodigoBarra = producto.CodigoBarra;
+            produ.Nombre = producto.Nombre;
+            produ.FechaVencimiento = producto.FechaVencimiento;
+            produ.Precio = producto.Precio;
+        }
+
+        public List<Producto> ObtenerPorCodBar(string codbar)
+        {
+            //Linq, es una tecnología de .net que nos permite hacer entre cosas
+            //filtros...
+            return productos.Where(o => o.CodigoBarra.Contains(codbar)).ToList();
         }
 
         public Producto ObtenerPorId(int id)
         {
-            throw new NotImplementedException();
+            foreach (Producto item in productos)
+            {
+                if(item.Id == id)
+                {
+                    //Encontré el producto en mi lista
+                    return item;
+                }
+            }
+
+            return null;            
         }
 
         public List<Producto> ObtenerTodos()

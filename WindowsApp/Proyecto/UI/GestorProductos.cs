@@ -1,5 +1,6 @@
 ﻿using Dao.Domain;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,12 +17,22 @@ namespace UI
         private bool alta;
 
         public Producto Producto { get; set; }
-        public GestorProductos(bool alta = true)
+        public GestorProductos(bool alta = true, Producto producto = null)
         {
             InitializeComponent();
 
             this.alta = alta;
             this.Text = (alta) ? "Alta de producto" : "Modificar producto";
+            Producto = producto;
+
+            if (producto != null)
+            {
+                //Asignar datos a la UI
+                txtCodBar.Text = producto.CodigoBarra;
+                txtNombre.Text = producto.Nombre;
+                numPrecio.Value = producto.Precio;
+                calFecha.SelectionStart = producto.FechaVencimiento;
+            }
         }
 
 
@@ -34,11 +45,13 @@ namespace UI
                 return;
             }
 
-            Producto = new Producto();
+            if (alta)
+                Producto = new Producto();
+            //Cargo los datos desde la UI a mi objeto producto
             Producto.Nombre = txtNombre.Text;
             Producto.Precio = numPrecio.Value;
             Producto.CodigoBarra = txtCodBar.Text;
-            Producto.FechaVencimiento = calFecha.SelectionStart;
+            Producto.FechaVencimiento = calFecha.SelectionStart;       
 
             DialogResult = DialogResult.OK;
             Close();

@@ -24,5 +24,7 @@ namespace Dao.Interfaces
         Producto ObtenerPorId(int id);
 
         List<Producto> ObtenerTodos();
+
+        List<Producto> ObtenerPorCodBar(string codbar);
     }
 }

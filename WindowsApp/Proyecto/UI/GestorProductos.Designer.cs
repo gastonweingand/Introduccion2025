@@ -100,9 +100,9 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(299, 47);
+            this.txtNombre.Location = new System.Drawing.Point(216, 47);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(169, 26);
+            this.txtNombre.Size = new System.Drawing.Size(304, 26);
             this.txtNombre.TabIndex = 10;
             // 
             // txtCodBar

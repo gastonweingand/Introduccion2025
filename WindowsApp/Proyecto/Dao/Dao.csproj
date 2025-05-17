@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,8 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Categoria.cs" />
     <Compile Include="Domain\Producto.cs" />
+    <Compile Include="Implementaciones\ProductoFileDao.cs" />
     <Compile Include="Implementaciones\ProductoMemoryDao.cs" />
+    <Compile Include="Implementaciones\ProductoSqlServerDao.cs" />
+    <Compile Include="Interfaces\ICategoriaDAO.cs" />
     <Compile Include="Interfaces\IProductoDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

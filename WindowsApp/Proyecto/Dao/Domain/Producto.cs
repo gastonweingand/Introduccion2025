@@ -18,9 +18,11 @@ namespace Dao.Domain
 
         public DateTime FechaVencimiento { get; set; }
 
+        public Categoria Categoria { get; set; }
+
         public Producto()
         {
-            
+
         }
         public Producto(int id, string nombre, decimal precio, string codigoBarra, DateTime fechaVencimiento)
         {
@@ -29,6 +31,11 @@ namespace Dao.Domain
             Precio = precio;
             CodigoBarra = codigoBarra;
             FechaVencimiento = fechaVencimiento;
+        }
+
+        public override string ToString()
+        {
+            return $"Id:{Id},Nombre:{Nombre},Precio:{Precio},CodigoBarra:{CodigoBarra},FechaVencimiento:{FechaVencimiento}";
         }
     }
 }
