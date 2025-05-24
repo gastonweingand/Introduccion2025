@@ -23,9 +23,9 @@ namespace Dao.Implementaciones
 
         private readonly string selectOne = "SELECT * FROM Producto WHERE Id = @Id";
 
-        private readonly string selectByCodBar = "SELECT * FROM Producto WHERE CodigoBarra";
+        private readonly string selectByCodBar = "SELECT * FROM Producto WHERE CodigoBarra LIKE @CodigoBarra";
 
-        private readonly string selectByVencimiento = "SELECT * FROM Producto WHERE"; //"SELECT * FROM Producto WHERE FechaVencimiento >= @FechaDesde and FechaVencimiento <= @FechaHasta";
+        private readonly string selectByVencimiento = "SELECT * FROM Producto WHERE FechaVencimiento >= @FechaDesde and FechaVencimiento <= @FechaHasta";
         #endregion
 
         public void Agregar(Producto producto)
@@ -150,12 +150,10 @@ namespace Dao.Implementaciones
             {
                 conn.Open();
 
-                string selectByCodbarCommand = selectByCodBar + $" like '%{codbar}%'";
-
-                using (SqlCommand sqlCommand = new SqlCommand(selectByCodbarCommand, conn))
+                using (SqlCommand sqlCommand = new SqlCommand(selectByCodBar, conn))
                 {
-                    //sqlCommand.Parameters.AddWithValue("@CodigoBarra", codbar);
-                    
+                    sqlCommand.Parameters.AddWithValue("@CodigoBarra", "%" + codbar + "%");
+
                     SqlDataReader reader = sqlCommand.ExecuteReader();
 
                     while (reader.Read())
@@ -213,11 +211,10 @@ namespace Dao.Implementaciones
             {
                 conn.Open();
 
-                string selectByFechaCommand = selectByVencimiento + $" FechaVencimiento >= '{fechaDesde.ToString("yyyyMMdd")}' and FechaVencimiento <= '{fechaHasta.ToString("yyyyMMdd")}'";
-
-                using (SqlCommand sqlCommand = new SqlCommand(selectByFechaCommand, conn))
+                using (SqlCommand sqlCommand = new SqlCommand(selectByVencimiento, conn))
                 {
-                    //sqlCommand.Parameters.AddWithValue("@CodigoBarra", codbar);
+                    sqlCommand.Parameters.AddWithValue("@FechaDesde", fechaDesde);
+                    sqlCommand.Parameters.AddWithValue("@FechaHasta", fechaHasta);
 
                     SqlDataReader reader = sqlCommand.ExecuteReader();
 
