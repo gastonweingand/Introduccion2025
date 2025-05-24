@@ -11,29 +11,33 @@ using System.Threading.Tasks;
 namespace Dao.Implementaciones
 {
     public class ProductoFileDao : IProductoDao
-    {
-        string filePath = ConfigurationManager.AppSettings["dbFilePath"];
+    {        
         public void Agregar(Producto producto)
         {
             //using es un bloque de liberación de recursos a la fuerza
-            using (StreamWriter sw = new StreamWriter(filePath, true))
+            using (StreamWriter sw = new StreamWriter(Settings.FilePathDB, true))
             {
                 //Deberíamos definir un formato para guardar el archivo
                 sw.WriteLine(producto);
             }
         }
 
-        public void Eliminar(int id)
+        public int Eliminar(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Modificar(Producto producto)
+        public int Modificar(Producto producto)
         {
             throw new NotImplementedException();
         }
 
         public List<Producto> ObtenerPorCodBar(string codbar)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Producto> ObtenerPorFechaVencimiento(DateTime fechaDesde, DateTime fechaHasta)
         {
             throw new NotImplementedException();
         }
@@ -48,7 +52,7 @@ namespace Dao.Implementaciones
             List<Producto> productos = new List<Producto>();
             //Leer los registros desde el file y convertirlos a objetos
 
-            using (StreamReader sr = new StreamReader(filePath))
+            using (StreamReader sr = new StreamReader(Settings.FilePathDB))
             {
                 while (!sr.EndOfStream)
                 {

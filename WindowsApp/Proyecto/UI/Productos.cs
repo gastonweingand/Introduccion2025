@@ -45,9 +45,12 @@ namespace UI
                 Producto productoNuevo = gestorProductos.Producto;
                 //Llamo a mi acceso a datos para agregar este nuevo producto en memoria
                 daoProductos.Agregar(productoNuevo);
-                RefrescarGrilla();
 
-                MessageBox.Show("Producto agregado correctamente");
+                if(productoNuevo.Id > 0) //Significa que el motor pudo asignar una PK a mi registro
+                {
+                    MessageBox.Show("Producto agregado correctamente");
+                    RefrescarGrilla();
+                }
             }
             else
                 MessageBox.Show("Operación cancelada");
@@ -89,10 +92,15 @@ namespace UI
                     //Si se dio ok, significa que retorno el producto modificado
                     Producto productoModificado = gestorProductos.Producto;
                     //Llamo a mi acceso a datos para modificar este producto en memoria
-                    daoProductos.Modificar(productoModificado);
-                    RefrescarGrilla();
-
-                    MessageBox.Show("Producto modificado correctamente");
+                    if(daoProductos.Modificar(productoModificado) == 1)
+                    {
+                        MessageBox.Show("Producto modificado correctamente");
+                        RefrescarGrilla();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ocurrió un error. Verificar");
+                    }
                 }
                 else
                     MessageBox.Show("Operación cancelada");
@@ -113,9 +121,15 @@ namespace UI
                 if(MessageBox.Show($"¿Desea eliminar el producto {producto.Nombre}?", "Confirmación", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     //Acá voy a eliminar del repositorio
-                    daoProductos.Eliminar(producto.Id);
-                    RefrescarGrilla();
-                    MessageBox.Show("Producto eliminado correctamente");
+                    if(daoProductos.Eliminar(producto.Id) == 1)
+                    {
+                        MessageBox.Show("Producto eliminado correctamente");
+                        RefrescarGrilla();                    
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ocurrió un error. Verificar");
+                    }
                 }
                 else
                 {
@@ -126,6 +140,16 @@ namespace UI
             {
                 MessageBox.Show("Debe selecciona al menos una fila.");
             }
+        }
+
+        private void btnObtenerEntreFechas_Click(object sender, EventArgs e)
+        {
+            List<Producto> productos = new List<Producto>();
+
+            productos = daoProductos.ObtenerPorFechaVencimiento(DateTime.Parse(txtFechaDesde.Text), DateTime.Parse(txtFechaHasta.Text));
+
+            dgvProductos.DataSource = null;
+            dgvProductos.DataSource = productos;
         }
     }
 }

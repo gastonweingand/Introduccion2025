@@ -32,17 +32,19 @@ namespace Dao.Implementaciones
             productos.Add(producto);
         }
 
-        public void Eliminar(int id)
+        public int Eliminar(int id)
         {
             //A la antigua, buscando el elemento y luego eliminándolo.
             Producto producto = ObtenerPorId(id);
             productos.Remove(producto);
 
+            return 1;
+
             //Linq, a través de una expresión lambda
             //productos.RemoveAll(o => o.Id == id);
         }
 
-        public void Modificar(Producto producto)
+        public int Modificar(Producto producto)
         {
             //Para modificar, primero debemos buscar el producto a ser modificado
             Producto produ = ObtenerPorId(producto.Id);
@@ -51,6 +53,8 @@ namespace Dao.Implementaciones
             produ.Nombre = producto.Nombre;
             produ.FechaVencimiento = producto.FechaVencimiento;
             produ.Precio = producto.Precio;
+
+            return 1;
         }
 
         public List<Producto> ObtenerPorCodBar(string codbar)
@@ -58,6 +62,11 @@ namespace Dao.Implementaciones
             //Linq, es una tecnología de .net que nos permite hacer entre cosas
             //filtros...
             return productos.Where(o => o.CodigoBarra.Contains(codbar)).ToList();
+        }
+
+        public List<Producto> ObtenerPorFechaVencimiento(DateTime fechaDesde, DateTime fechaHasta)
+        {
+            throw new NotImplementedException();
         }
 
         public Producto ObtenerPorId(int id)

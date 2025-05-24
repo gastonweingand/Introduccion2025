@@ -17,14 +17,16 @@ namespace Dao.Interfaces
     {
         void Agregar(Producto producto);
 
-        void Modificar(Producto producto);
+        int Modificar(Producto producto);
 
-        void Eliminar(int id);
+        int Eliminar(int id);
 
         Producto ObtenerPorId(int id);
 
         List<Producto> ObtenerTodos();
 
         List<Producto> ObtenerPorCodBar(string codbar);
+
+        List<Producto> ObtenerPorFechaVencimiento(DateTime fechaDesde, DateTime fechaHasta);
     }
 }
