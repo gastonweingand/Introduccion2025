@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dao.Interfaces
 {
-    internal interface ICategoriaDAO
+    public interface ICategoriaDao
     {
         void Agregar(Categoria categoria);
 

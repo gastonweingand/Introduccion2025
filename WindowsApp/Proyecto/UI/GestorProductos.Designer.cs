@@ -38,6 +38,8 @@
             this.txtCodBar = new System.Windows.Forms.TextBox();
             this.numPrecio = new System.Windows.Forms.NumericUpDown();
             this.calFecha = new System.Windows.Forms.MonthCalendar();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cmbCategorias = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,7 +73,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(54, 272);
+            this.label4.Location = new System.Drawing.Point(54, 318);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(150, 20);
             this.label4.TabIndex = 7;
@@ -80,7 +82,7 @@
             // btnAceptar
             // 
             this.btnAceptar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnAceptar.Location = new System.Drawing.Point(214, 562);
+            this.btnAceptar.Location = new System.Drawing.Point(216, 596);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(96, 31);
             this.btnAceptar.TabIndex = 8;
@@ -91,7 +93,7 @@
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(343, 562);
+            this.btnCancelar.Location = new System.Drawing.Point(345, 596);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(96, 31);
             this.btnCancelar.TabIndex = 9;
@@ -100,41 +102,63 @@
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(216, 47);
+            this.txtNombre.Location = new System.Drawing.Point(231, 47);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(304, 26);
             this.txtNombre.TabIndex = 10;
             // 
             // txtCodBar
             // 
-            this.txtCodBar.Location = new System.Drawing.Point(299, 115);
+            this.txtCodBar.Location = new System.Drawing.Point(314, 115);
             this.txtCodBar.Name = "txtCodBar";
-            this.txtCodBar.Size = new System.Drawing.Size(169, 26);
+            this.txtCodBar.Size = new System.Drawing.Size(221, 26);
             this.txtCodBar.TabIndex = 11;
             // 
             // numPrecio
             // 
-            this.numPrecio.Location = new System.Drawing.Point(299, 197);
+            this.numPrecio.Location = new System.Drawing.Point(314, 197);
             this.numPrecio.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.numPrecio.Name = "numPrecio";
-            this.numPrecio.Size = new System.Drawing.Size(169, 26);
+            this.numPrecio.Size = new System.Drawing.Size(221, 26);
             this.numPrecio.TabIndex = 12;
             // 
             // calFecha
             // 
-            this.calFecha.Location = new System.Drawing.Point(216, 272);
+            this.calFecha.Location = new System.Drawing.Point(216, 318);
             this.calFecha.Name = "calFecha";
             this.calFecha.TabIndex = 13;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(54, 260);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(82, 20);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Categoría:";
+            // 
+            // cmbCategorias
+            // 
+            this.cmbCategorias.DisplayMember = "Nombre";
+            this.cmbCategorias.FormattingEnabled = true;
+            this.cmbCategorias.Items.AddRange(new object[] {
+            "--Seleccione--"});
+            this.cmbCategorias.Location = new System.Drawing.Point(314, 260);
+            this.cmbCategorias.Name = "cmbCategorias";
+            this.cmbCategorias.Size = new System.Drawing.Size(221, 28);
+            this.cmbCategorias.TabIndex = 15;
             // 
             // GestorProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(637, 605);
+            this.ClientSize = new System.Drawing.Size(660, 652);
+            this.Controls.Add(this.cmbCategorias);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.calFecha);
             this.Controls.Add(this.numPrecio);
             this.Controls.Add(this.txtCodBar);
@@ -148,6 +172,7 @@
             this.Name = "GestorProductos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestor Productos";
+            this.Load += new System.EventHandler(this.GestorProductos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -166,5 +191,7 @@
         private System.Windows.Forms.TextBox txtCodBar;
         private System.Windows.Forms.NumericUpDown numPrecio;
         private System.Windows.Forms.MonthCalendar calFecha;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cmbCategorias;
     }
 }

@@ -48,7 +48,7 @@
     <Compile Include="Implementaciones\File\ProductoFileDao.cs" />
     <Compile Include="Implementaciones\Memory\ProductoMemoryDao.cs" />
     <Compile Include="Implementaciones\SqlServer\ProductoSqlServerDao.cs" />
-    <Compile Include="Interfaces\ICategoriaDAO.cs" />
+    <Compile Include="Interfaces\ICategoriaDao.cs" />
     <Compile Include="Interfaces\IProductoDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />

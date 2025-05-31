@@ -47,7 +47,14 @@ namespace Dao.Implementaciones
                         sqlCommand.Parameters.AddWithValue("@Precio", producto.Precio);
                         sqlCommand.Parameters.AddWithValue("@CodigoBarra", producto.CodigoBarra);
                         sqlCommand.Parameters.AddWithValue("@FechaVencimiento", producto.FechaVencimiento);
-                        sqlCommand.Parameters.AddWithValue("@IdCategoria", DBNull.Value); //Categoría podría ser null
+
+                        //Concepto de deshidratación de objetos
+                        //Extraer los datos que pueden ser primitivos u objetos para el momento de la persistencia
+      
+                        if(producto.Categoria != null)
+                            sqlCommand.Parameters.AddWithValue("@IdCategoria", producto.Categoria.Id); //En este caso tenemos un valor de categoría
+                        else
+                            sqlCommand.Parameters.AddWithValue("@IdCategoria", DBNull.Value); //Categoría podría ser null
 
                         object retorno = sqlCommand.ExecuteScalar();
 
@@ -91,7 +98,12 @@ namespace Dao.Implementaciones
                     sqlCommand.Parameters.AddWithValue("@Precio", producto.Precio);
                     sqlCommand.Parameters.AddWithValue("@CodigoBarra", producto.CodigoBarra);
                     sqlCommand.Parameters.AddWithValue("@FechaVencimiento", producto.FechaVencimiento);
-                    sqlCommand.Parameters.AddWithValue("@IdCategoria", DBNull.Value); //Categoría podría ser null
+
+                    if (producto.Categoria != null)
+                        sqlCommand.Parameters.AddWithValue("@IdCategoria", producto.Categoria.Id); //En este caso tenemos un valor de categoría
+                    else
+                        sqlCommand.Parameters.AddWithValue("@IdCategoria", DBNull.Value); //Categoría podría ser null
+
                     sqlCommand.Parameters.AddWithValue("@Id", producto.Id);
 
                     return sqlCommand.ExecuteNonQuery();
@@ -125,14 +137,7 @@ namespace Dao.Implementaciones
                     while (reader.Read())
                     {
                         //Significa que estoy leyendo un registro...
-                        Producto producto = new Producto();
-                        producto.Id = int.Parse(reader["Id"].ToString());
-                        producto.Nombre = reader["Nombre"].ToString();
-                        producto.Precio = decimal.Parse(reader["Precio"].ToString());
-                        producto.CodigoBarra = reader["CodigoBarra"].ToString();
-                        producto.FechaVencimiento = DateTime.Parse(reader["FechaVencimiento"].ToString());
-
-                        //producto.Categoria  = 
+                        Producto producto = HidratarProducto(reader);
 
                         productos.Add(producto);
                     }
@@ -140,6 +145,25 @@ namespace Dao.Implementaciones
             }
 
             return productos;
+        }
+
+        private static Producto HidratarProducto(SqlDataReader reader)
+        {
+            Producto producto = new Producto();
+            producto.Id = int.Parse(reader["Id"].ToString());
+            producto.Nombre = reader["Nombre"].ToString();
+            producto.Precio = decimal.Parse(reader["Precio"].ToString());
+            producto.CodigoBarra = reader["CodigoBarra"].ToString();
+            producto.FechaVencimiento = DateTime.Parse(reader["FechaVencimiento"].ToString());
+
+            //Acá debemos "hidratar", completar los datos primitivos
+            //y luego voy hidratando cada objeto que necesite...
+            //En este caso solo tenemos el objeto Categoria como agregación
+
+            //Solamente puedo buscar si el IdCategoria es distinto a null
+            if (reader["IdCategoria"] != DBNull.Value)
+                producto.Categoria = new CategoriaSqlServerDao().ObtenerPorId(int.Parse(reader["IdCategoria"].ToString()));
+            return producto;
         }
 
         public List<Producto> ObtenerPorCodBar(string codbar)
@@ -159,12 +183,7 @@ namespace Dao.Implementaciones
                     while (reader.Read())
                     {
                         //Significa que estoy leyendo un registro...
-                        Producto producto = new Producto();
-                        producto.Id = int.Parse(reader["Id"].ToString());
-                        producto.Nombre = reader["Nombre"].ToString();
-                        producto.Precio = decimal.Parse(reader["Precio"].ToString());
-                        producto.CodigoBarra = reader["CodigoBarra"].ToString();
-                        producto.FechaVencimiento = DateTime.Parse(reader["FechaVencimiento"].ToString());
+                        Producto producto = HidratarProducto(reader);
 
                         productos.Add(producto);
                     }
@@ -189,12 +208,7 @@ namespace Dao.Implementaciones
                     if (reader.Read())
                     {
                         //Significa que estoy leyendo un registro...
-                        Producto producto = new Producto();
-                        producto.Id = int.Parse(reader["Id"].ToString());
-                        producto.Nombre = reader["Nombre"].ToString();
-                        producto.Precio = decimal.Parse(reader["Precio"].ToString());
-                        producto.CodigoBarra = reader["CodigoBarra"].ToString();
-                        producto.FechaVencimiento = DateTime.Parse(reader["FechaVencimiento"].ToString());
+                        Producto producto = HidratarProducto(reader);
 
                         return producto;
                     }
@@ -221,12 +235,7 @@ namespace Dao.Implementaciones
                     while (reader.Read())
                     {
                         //Significa que estoy leyendo un registro...
-                        Producto producto = new Producto();
-                        producto.Id = int.Parse(reader["Id"].ToString());
-                        producto.Nombre = reader["Nombre"].ToString();
-                        producto.Precio = decimal.Parse(reader["Precio"].ToString());
-                        producto.CodigoBarra = reader["CodigoBarra"].ToString();
-                        producto.FechaVencimiento = DateTime.Parse(reader["FechaVencimiento"].ToString());
+                        Producto producto = HidratarProducto(reader);
 
                         productos.Add(producto);
                     }
